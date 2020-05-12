@@ -1,0 +1,14 @@
+server:
+  port: 7002
+
+eureka:
+  client:
+    service-url: #集群地址
+      defaultZone: http://eureka-server7001:7001/eureka/,http://eureka-server7002:7002/eureka/
+    register-with-eureka: false #flase 表示不向注册中心注册自己
+    fetch-registry: false #flase 表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+      #取消eureka的自我保护机制  eureka注册中心需要设置的参数
+      #关闭找我保护机制，保证不可用服务被及时剔除
+      enable-self-preservation: false
+      #剔除间隔时间 2000毫秒
+      eviction-interval-timer-in-ms: 2000

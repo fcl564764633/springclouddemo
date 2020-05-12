@@ -1,0 +1,48 @@
+server:
+  port: 8002
+spring:
+  application:
+    name: cloud-payment-service
+
+  datasource:  #数据源
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://134.175.137.147:3306/archives?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: lzzj123456
+    druid:  #德鲁伊数据源定制
+      filters: stat #配置监控统计拦截的filters
+
+      initialSize: 1 #初始化大小
+      minIdle: 1 #最小
+      maxActive: 20 #最大
+
+      maxWait: 60000 #配置获取连接等待超时的时间
+
+      timeBetweenEvictionRunsMillis: 60000 #配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+
+      minEvictableIdleTimeMillis: 300000 #配置一个连接在池中最小生存的时间，单位是毫秒
+      #      maxEvictableIdleTimeMillis: 900000
+
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+
+      poolPreparedStatements: true #打开PSCache
+      maxOpenPreparedStatements: 20 #指定每个连接上PSCache的大小
+
+      asyncInit: true
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-server7001:7001/eureka/,http://eureka-server7002:7002/eureka/
+  instance:
+    instance-id: payment8002 #eruka服务商 显示服务名
+    prefer-ip-address: true  #显示服务器ip
+    #取消eureka的自我保护机制  提供者需要设置的参数
+    #eureka客户端向服务端发送心跳的时间间隔，单位为秒(默认是30s)
+    lease-renewal-interval-in-seconds: 1
+    #eureka服务端在收到最后一次心跳后等待时间上限，单位为秒(默认是90s)
+    lease-expiration-duration-in-seconds: 2
