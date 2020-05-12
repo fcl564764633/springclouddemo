@@ -11,7 +11,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @Description: TODO
  */
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients //feign 远程调用服务
 @SpringBootApplication
 public class OrderZkMain80 {
     public static void main(String[] args) {
