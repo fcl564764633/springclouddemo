@@ -25,3 +25,6 @@ logging:
   level:
     #feign日志以书面级别监控哪个接口
     com.fcl.springcloud.order.service.OrderService: debug
+feign:
+  hystrix:
+    enabled: true #开启 支持断路器
