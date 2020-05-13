@@ -12,13 +12,18 @@ import org.springframework.web.bind.annotation.RestController;
  * @DateTime: 2020/5/11 15:41
  * @Description: TODO
  */
-@RequestMapping("/payment")
 @RestController
 @Slf4j
 public class PayController {
 
-    @RequestMapping("/getName/{id}")
+    @RequestMapping("/payment/getName/{id}")
     public CommonResult<Payment> getName(@PathVariable("id") Integer id){
+        //故意睡3秒 测试客户端 openfeign中ribbon 超时时间多少 默认1秒
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         System.out.println("进入8002服务层成功+id:"+id);
         return new CommonResult<Payment>(200,"进入payment",null);
     }

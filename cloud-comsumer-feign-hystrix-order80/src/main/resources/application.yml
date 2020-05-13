@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: consumer-order
+    name: consumer-hystrix-order
 eureka:
   client:
     fetch-registry: true
@@ -11,7 +11,7 @@ eureka:
     service-url:
       defaultZone: http://eureka-server7001:7001/eureka/,http://eureka-server7002:7002/eureka/
   instance:
-    instance-id: c-order80   #eruka网站页面 服务商 显示服务名
+    instance-id: c-hystrix-order80   #eruka网站页面 服务商 显示服务名
     prefer-ip-address: true   #eruka网站页面 显示服务器ip
 
 #设置feign客户端超时时间(OpenFeign默认支持ribbon)

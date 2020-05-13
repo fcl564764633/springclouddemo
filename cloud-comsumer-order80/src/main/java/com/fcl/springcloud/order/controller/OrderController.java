@@ -13,12 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
  * @DateTime: 2020/5/11 15:30
  * @Description: TODO
  */
-@RequestMapping("/order")
 @RestController
 public class OrderController {
     @Autowired
     private OrderService orderService;
-    @RequestMapping("/getName")
+    @RequestMapping("/order/getName")
     public CommonResult<Payment> getName(@RequestParam("id") Integer id){
         System.out.println("进来order消费端");
         return orderService.getName(id);
