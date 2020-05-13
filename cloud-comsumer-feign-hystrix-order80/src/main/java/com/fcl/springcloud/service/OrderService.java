@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @Description: TODO
  */
 @Component
-@FeignClient(value = "CLOUD-PAYMENT-HYSTRIX-SERVICE")
+//fallback = OrderFallbackService.class   统一处理   解耦  代码量少
+@FeignClient(value = "CLOUD-PAYMENT-HYSTRIX-SERVICE",fallback = OrderFallbackService.class)
 public interface OrderService {
 
     @GetMapping("/payment/hystrix/ok/{id}")

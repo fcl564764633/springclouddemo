@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  */
 @RestController
 //全局方法对应的 兜底方法
-@DefaultProperties(defaultFallback = "orderError_global_Fallback")
+//@DefaultProperties(defaultFallback = "orderError_global_Fallback")
 public class OrderController {
     @Resource
     private OrderService orderService;
@@ -31,17 +31,16 @@ public class OrderController {
     }
 
     @GetMapping("/order/hystrix/timeout/{id}")
-    @HystrixCommand //有全局 Fallback方法  如果你想让这个方法需要断路功能 要加这个参数
+//    @HystrixCommand //有全局 Fallback方法  如果你想让这个方法需要断路功能 要加这个参数
     public String paymentInfo_timeout(@PathVariable("id")Integer id){
-        int age = 10/0;
         return orderService.paymentInfo_timeout(id);
     }
 
 
     @GetMapping("/order/hystrix/timeout2/{id}")
     //具体方法对应的 兜底方法  优先级是方法上配置的  如：orderFallback_timeout
-    @HystrixCommand(fallbackMethod = "orderFallback_timeout",commandProperties ={
-            @HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds",value = "3000")})
+//    @HystrixCommand(fallbackMethod = "orderFallback_timeout",commandProperties ={
+//            @HystrixProperty(name="execution.isolation.thread.timeoutInMilliseconds",value = "3000")})
     public String paymentInfo_timeout2(@PathVariable("id") Integer id){
         System.out.println("消费端进来超时方法");
         int number = 5;
@@ -53,6 +52,9 @@ public class OrderController {
         }
         return "线程池 ："+Thread.currentThread().getName() + "paymentInfo_timeout "+ id + "超时（秒）"+ number;
     }
+
+
+//下面代码具有膨胀  缺点
     //兜底方法   运行异常，超时，都会让服务降级  降级后执行的方法
     public String orderFallback_timeout(Integer id){
         return "消费端80 系统超时或者异常，请稍后重试，o(╥﹏╥)o";
