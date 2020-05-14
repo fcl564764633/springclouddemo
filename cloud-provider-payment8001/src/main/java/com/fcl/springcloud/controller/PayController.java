@@ -24,7 +24,7 @@ public class PayController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("进入8002服务层成功+id:"+id);
-        return new CommonResult<Payment>(200,"进入payment",null);
+        System.out.println("进入8001服务层成功+id:"+id);
+        return new CommonResult<Payment>(200,"进入8001payment",null);
     }
 }
