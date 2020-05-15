@@ -1,0 +1,24 @@
+server:
+  port: 3355
+
+spring:
+  application:
+    name: config-client
+  cloud:
+    #config客户端配置
+    config:
+      label: master   #分支名称
+      name: config    #配置文件名称
+      profile: dev    #读取后缀名称 上述3个综合：master分支上config-dev.yml被http://localhost:3344/master/config-dev.yml
+      uri: http://localhost:3344    #配置中心地址
+
+
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka-server7001:7001/eureka/,http://eureka-server7002:7002/eureka/
+  instance:
+    instance-id: config-client-3355   #eruka网站页面 服务商 显示服务名
+    prefer-ip-address: true   #eruka网站页面 显示服务器ip
