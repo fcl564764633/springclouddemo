@@ -8,3 +8,5 @@ springcloud demo
 3.增加Hystrix 断路器 （降级，熔断）例子  Hystrix dashboard 监控
 
 4.增加网关 gateway (路由，断言，过滤器) 实现动态路由，自定义过滤器
+
+5.消息总线（遇到问题，发送http://localhost:3344/actuator/bus-refresh post请求的时候，失败，把热部署依赖 去掉  就可以了？什么原因暂时不知）

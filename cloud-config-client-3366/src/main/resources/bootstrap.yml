@@ -1,5 +1,5 @@
 server:
-  port: 3355
+  port: 3366
 
 spring:
   application:
@@ -25,7 +25,7 @@ eureka:
     service-url:
       defaultZone: http://eureka-server7001:7001/eureka/,http://eureka-server7002:7002/eureka/
   instance:
-    instance-id: config-client-3355   #eruka网站页面 服务商 显示服务名
+    instance-id: config-client-3366   #eruka网站页面 服务商 显示服务名
     prefer-ip-address: true   #eruka网站页面 显示服务器ip
 
 #暴露监控端点
