@@ -3,6 +3,7 @@ package com.fcl.springcloud.controller;
 import com.fcl.springcloud.entitys.CommonResult;
 import com.fcl.springcloud.entitys.Payment;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,5 +27,9 @@ public class PayController {
         }
         System.out.println("进入8001服务层成功+id:"+id);
         return new CommonResult<Payment>(200,"进入8001payment",null);
+    }
+    @GetMapping("/payment/zipkin")
+    public String paymentZipkin(){
+        return "hi,i'am paymentzipkin server fall back";
     }
 }

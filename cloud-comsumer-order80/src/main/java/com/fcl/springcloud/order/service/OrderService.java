@@ -18,4 +18,7 @@ public interface OrderService {
 
     @GetMapping("/payment/getName/{id}")
     CommonResult<Payment> getName(@PathVariable("id") Integer id);
+
+    @GetMapping("/payment/zipkin")
+    public String paymentZipkin();
 }
